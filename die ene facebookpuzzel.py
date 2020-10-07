@@ -6,6 +6,12 @@ def solve(problem, operations, base=""):
 	Het doel van deze puzzel is om een som op te lossen door operatoren in te vullen in de som.
 	
 	Pas op als je computer bijzonder aardappel is, omdat er wel 4^4=256 opties getest worden!
+
+	:param problem the thing you are trying to solve. Should be a list of numbers or equality sign. Between all the
+	numbers the operations are looped into it. Ensure these are numbers.
+	:param operations De wiskundige operaties die opties zin om ertussen te plaatsen. Dus plus (+) min (-) deel (/) of
+	keer (/) in een lijst of array.
+	:param base something with recursiveness, not sure
 	"""
 	if len(problem) == 1:
 		base = base + str(problem[0])
