@@ -1,6 +1,5 @@
-ops = ["+", "-", "*", "/"]
 
-def func():
+def solve(problem, operations, base=""):
 	"""
 	Een functie om Daphne's breinbrekende facebookpuzzel op te lossen.
 	
@@ -8,17 +7,18 @@ def func():
 	
 	Pas op als je computer bijzonder aardappel is, omdat er wel 4^4=256 opties getest worden!
 	"""
-	corr_lines = []
-	for op1 in ops:
-		for op2 in ops:
-			for op3 in ops:
-				for op4 in ops:
-					sol = "8 " + op1 + " 4 " + op2 + " 6 == 6 " + op3 + " 7 " + op4 + " 4"
-					corr = eval(sol)
-					if corr:
-						corr_lines.append(sol)
-	print("answers:")
-	for line in corr_lines:
-		print(line)
+	if len(problem) == 1:
+		base = base + str(problem[0])
+		if eval(base):
+			print("Solution: " + base)
+		return
 
-func()
+	if problem[0] == "==" or problem[1] == "==":
+		solve(problem=problem[1:], operations=operations, base=base+str(problem[0]))
+		return
+
+	for n in range(0, len(operations)):
+		solve(problem=problem[1:], operations=operations, base=base + str(problem[0]) + str(operations[n]))
+
+
+solve(problem=[8, 4, 6, "==", 6, 7, 4], operations=["+", "-", "*", "/"])
